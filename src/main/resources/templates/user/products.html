@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách sản phẩm</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+    <div class="nav">
+        <div class="brand">Mini Shop</div>
+        <div><a th:href="@{/products}">Mua hàng</a><a th:href="@{/admin/products}">Admin</a></div>
+    </div>
+    <div class="container">
+        <div class="header">
+            <h1>Sản phẩm đang bán</h1><span class="muted">Chọn sản phẩm và tạo đơn hàng</span>
+        </div>
+        <div th:if="${message}" class="alert success" th:text="${message}"></div>
+        <div th:if="${error}" class="alert error" th:text="${error}"></div>
+        <div class="grid">
+            <div class="card product-card" th:each="p : ${products}"><img th:if="${p.imageUrl}" th:src="${p.imageUrl}"
+                    alt="product">
+                <h2 th:text="${p.name}"></h2>
+                <p class="muted" th:text="${p.description}"></p>
+                <p class="price" th:text="${#numbers.formatDecimal(p.price,0,'COMMA',0,'POINT')} + ' VNĐ'"></p>
+                <p><span class="badge">Còn <span th:text="${p.quantity}"></span></span></p>
+                <form th:action="@{/products/{id}/order(id=${p.id})}" method="post"><input name="customerName"
+                        placeholder="Tên khách hàng" required><input name="phone" placeholder="Số điện thoại"
+                        required><input name="address" placeholder="Địa chỉ nhận hàng" required><input name="quantity"
+                        type="number" min="1" value="1" required><br><br><button class="btn btn-ok"
+                        th:disabled="${p.quantity == 0}">Đặt hàng</button></form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Chi tiết sản phẩm</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+    <div class="nav">
+        <div class="brand">Admin Shop</div>
+        <div><a th:href="@{/admin/products}">Sản phẩm</a><a th:href="@{/admin/orders}">Đơn hàng</a></div>
+    </div>
+    <div class="container">
+        <div class="header">
+            <h1>Chi tiết sản phẩm</h1><a class="btn btn-light" th:href="@{/admin/products}">← Quay lại</a>
+        </div>
+        <div class="card product-card"><img th:if="${product.imageUrl}" th:src="${product.imageUrl}" alt="product">
+            <h2 th:text="${product.name}"></h2>
+            <p class="muted" th:text="${product.description}"></p>
+            <p class="price" th:text="${#numbers.formatDecimal(product.price,0,'COMMA',0,'POINT')} + ' VNĐ'"></p>
+            <p><b>Tồn kho:</b> <span th:text="${product.quantity}"></span></p><a class="btn btn-primary"
+                th:href="@{/admin/products/{id}/edit(id=${product.id})}">Sửa sản phẩm</a>
+        </div>
+    </div>
+</body>
+
+</html>

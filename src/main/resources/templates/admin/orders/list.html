@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Đơn hàng</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+    <div class="nav">
+        <div class="brand">Admin Shop</div>
+        <div><a th:href="@{/products}">Trang user</a><a th:href="@{/admin/products}">Sản phẩm</a><a
+                th:href="@{/admin/orders}">Đơn hàng</a></div>
+    </div>
+    <div class="container">
+        <div class="header">
+            <h1>Danh sách đơn hàng</h1>
+        </div>
+        <div class="card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Khách hàng</th>
+                        <th>SĐT</th>
+                        <th>Sản phẩm</th>
+                        <th>SL</th>
+                        <th>Tổng tiền</th>
+                        <th>Trạng thái</th>
+                        <th>Ngày tạo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="o : ${orders}">
+                        <td th:text="${o.id}"></td>
+                        <td th:text="${o.customerName}"></td>
+                        <td th:text="${o.phone}"></td>
+                        <td th:text="${o.product.name}"></td>
+                        <td th:text="${o.quantity}"></td>
+                        <td th:text="${#numbers.formatDecimal(o.totalAmount,0,'COMMA',0,'POINT')} + ' VNĐ'"></td>
+                        <td><span class="badge" th:text="${o.status}"></span></td>
+                        <td th:text="${#temporals.format(o.createdAt, 'dd/MM/yyyy HH:mm')}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${pageTitle}"></title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+    <div class="nav">
+        <div class="brand">Admin Shop</div>
+        <div><a th:href="@{/admin/products}">Sản phẩm</a><a th:href="@{/admin/orders}">Đơn hàng</a></div>
+    </div>
+    <div class="container">
+        <div class="header">
+            <h1 th:text="${pageTitle}"></h1><a class="btn btn-light" th:href="@{/admin/products}">← Quay lại</a>
+        </div>
+        <form class="card" th:action="@{/admin/products}" th:object="${product}" method="post"><input type="hidden"
+                th:field="*{id}">
+            <div class="form-grid">
+                <div><label>Tên sản phẩm</label><input th:field="*{name}" required></div>
+                <div><label>Giá</label><input th:field="*{price}" type="number" min="0" step="1000" required></div>
+                <div><label>Số lượng tồn</label><input th:field="*{quantity}" type="number" min="0" required></div>
+                <div><label>Ảnh URL</label><input th:field="*{imageUrl}" placeholder="https://..."></div>
+                <div class="full"><label>Mô tả</label><textarea th:field="*{description}" rows="4"></textarea></div>
+            </div><br><button class="btn btn-primary">Lưu sản phẩm</button>
+        </form>
+    </div>
+</body>
+
+</html>
