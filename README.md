@@ -7,9 +7,10 @@ mvn spring-boot:run
 ```
 
 Mở:
-- User mua hàng: http://localhost:8080/products
-- Admin quản lí sản phẩm: http://localhost:8080/admin/products
-- Admin xem đơn hàng: http://localhost:8080/admin/orders
+https://shopadmin-28kb.onrender.com
+WEBSITE có 2 trang: User và Admin.
+User: Đặt hàng.
+Admin: Quản lý sản phẩm(thêm, sửa, xóa), danh sách sản phẩm, chi tiết sản phẩm, quản lý đơn đặt hàng.
 
 ## Cấu hình Neon
 
